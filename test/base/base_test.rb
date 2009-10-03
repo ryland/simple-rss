@@ -4,6 +4,7 @@ class BaseTest < Test::Unit::TestCase
 		@rss09 = SimpleRSS.parse open(File.dirname(__FILE__) + '/../data/rss09.rdf')
 		@rss20 = SimpleRSS.parse open(File.dirname(__FILE__) + '/../data/rss20.xml')
 		@atom = SimpleRSS.parse open(File.dirname(__FILE__) + '/../data/atom.xml')
+		@blogspot_atom = SimpleRSS.parse open(File.dirname(__FILE__) + '/../data/blogspot_atom.xml')
 	end
 	
 	def test_channel
@@ -48,4 +49,11 @@ class BaseTest < Test::Unit::TestCase
 	def test_bad_feed
 	  assert_raise(SimpleRSSError) { SimpleRSS.parse(open(File.dirname(__FILE__) + '/../data/not-rss.xml')) }
 	end
+   
+  def test_blogspot_atom_entries_get_link_with_rel_alternate_as_main_link_element
+    assert_equal 25, @blogspot_atom.entries.size
+    entry = @blogspot_atom.entries.first
+    assert_equal entry[:'link+alternate'], entry.link
+  end
+  
 end

@@ -115,7 +115,24 @@ class SimpleRSS
   				item[clean_tag(tag)] = clean_content(tag, $2, $3) if $2 || $3
 				end
 			end
-			def item.method_missing(name, *args) self[name] end
+			
+      # ,hack to fix blogspot atom feed links pointing to comments issue
+      # Looks like the code here is just taking the FIRST link tag and using
+      # the href from that. In Blogspot atom feeds, this tends to be the link
+      # to the comments - not what we want.
+      # The RFC (http://www.ietf.org/rfc/rfc4287.txt) states that 
+      # 'atom:link elements MAY have a "rel" attribute that indicates the link
+      # relation type.  If the "rel" attribute is not present, the link
+      # element MUST be interpreted as if the link relation type is
+      # "alternate"'
+      # Therefore we can work backwards and infer that the 'alternate' link,
+      # if present, should be taken as the default.
+      if item[:'link+alternate']
+        item[:link] = item[:'link+alternate']
+      end
+      
+      def item.method_missing(name, *args) self[name] end
+      
 			@items << item
 		end
 
