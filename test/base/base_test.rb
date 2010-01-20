@@ -39,11 +39,13 @@ class BaseTest < Test::Unit::TestCase
 	end
 	
 	def test_atom
-		assert_equal 1, @atom.entries.size
+		assert_equal 3, @atom.entries.size
 		assert_equal "dive into mark", @atom.title
 		assert_equal "http://example.org/", @atom.feed.link
 		assert_equal "http://example.org/2005/04/02/atom", @atom.entries.first.link
 		assert_equal "http://example.org/2005/04/02/atom", @atom.entries.first[:link]
+    assert_equal "http://example.org/attribute/test/", @atom.entries[1][:'link+alternate']
+    assert_equal "http://example.org/2003/12/13/atom03", @atom.entries.last[:link]
 	end
 	
 	def test_bad_feed

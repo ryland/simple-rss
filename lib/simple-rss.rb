@@ -99,13 +99,15 @@ class SimpleRSS
 			    tag_data = tag.to_s.split("+")
 			    tag = tag_data[0]
 			    rel = tag_data[1]
+          attrs, content = nil
 			    
   				if match[3] =~ %r{<(rss:|atom:)?#{tag}(.*?)rel=['"]#{rel}['"](.*?)>(.*?)</(rss:|atom:)?#{tag}>}mi
-            nil
+            attrs, content = $3, $4
   				elsif match[3] =~ %r{<(rss:|atom:)?#{tag}(.*?)rel=['"]#{rel}['"](.*?)/\s*>}mi
-  				  nil
+            # merge attributes
+  				  attrs = $2 + $3
   				end
-  				item[clean_tag("#{tag}+#{rel}")] = clean_content(tag, $3, $4) if $3 || $4
+  				item[clean_tag("#{tag}+#{rel}")] = clean_content(tag, attrs, content) if attrs || content
 		    else
   				if match[3] =~ %r{<(rss:|atom:)?#{tag}(.*?)>(.*?)</(rss:|atom:)?#{tag}>}mi
   					nil

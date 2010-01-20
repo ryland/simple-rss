@@ -42,4 +42,29 @@
       </div>
     </content>
   </entry>
+  <entry>
+    <title>Atom attribute order test</title>
+    <link href="http://example.org/attribute/test/" rel="alternate" type="text/html" />
+     href="http://example.org/audio/ph34r_my_podcast.mp3"/>
+    <id>tag:example.org,2009:3.2397</id>
+    <published>2009-12-13T08:29:29-04:00</published>
+    <author>
+      <name>Mark Pilgrim</name>
+      <uri>http://example.org/</uri>
+      <email>f8dy@example.com</email>
+    </author>
+    <content type="xhtml" xml:lang="en" 
+     xml:base="http://diveintomark.org/">
+      <div xmlns="http://www.w3.org/1999/xhtml">
+        <p>XML attribute order does not matter.</p>
+      </div>
+    </content>
+  </entry>
+  <entry>
+    <title>Atom-Powered Robots Run Amok</title>
+    <link href="http://example.org/2003/12/13/atom03"/>
+    <id>urn:uuid:1225c695-cfb8-4ebb-aaaa-80da344efa6a</id>
+    <updated>2003-12-13T18:30:02Z</updated>
+    <summary>A link without any attributes.</summary>
+  </entry>
 </feed>
