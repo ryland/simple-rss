@@ -101,9 +101,9 @@ class SimpleRSS
 			    rel = tag_data[1]
           attrs, content = nil
 			    
-  				if match[3] =~ %r{<(rss:|atom:)?#{tag}(.*?)rel=['"]#{rel}['"](.*?)>(.*?)</(rss:|atom:)?#{tag}>}mi
+  				if match[3] =~ %r{<(rss:|atom:)?#{tag}([^<>]*?)rel=['"]#{rel}['"]([^<>]*?)>(.*?)</(rss:|atom:)?#{tag}>}mi
             attrs, content = $3, $4
-  				elsif match[3] =~ %r{<(rss:|atom:)?#{tag}(.*?)rel=['"]#{rel}['"](.*?)/\s*>}mi
+  				elsif match[3] =~ %r{<(rss:|atom:)?#{tag}([^<>]*?)rel=['"]#{rel}['"]([^<>]*?)/\s*>}mi
             # merge attributes
   				  attrs = $2 + $3
   				end

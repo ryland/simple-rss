@@ -56,6 +56,7 @@ class BaseTest < Test::Unit::TestCase
     assert_equal 25, @blogspot_atom.entries.size
     entry = @blogspot_atom.entries.first
     assert_equal entry[:'link+alternate'], entry.link
+    assert_equal "http://instantbadger.blogspot.com/2009/09/how-to-create-and-save-ami-image-from.html", entry.link
   end
   
 end
