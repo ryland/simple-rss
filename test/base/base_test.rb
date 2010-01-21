@@ -36,6 +36,7 @@ class BaseTest < Test::Unit::TestCase
 		assert_equal "http://feeds.feedburner.com/rufytech?m=68", @rss20.items.first.link
 		assert_equal "http://feeds.feedburner.com/rufytech?m=68", @rss20.items.first[:link]
 		assert_equal "This is an XML content feed. It is intended to be viewed in a newsreader or syndicated to another site.", @rss20.channel.feedburner_browserFriendly
+    assert_nil @rss20.items.first[:content]
 	end
 	
 	def test_atom

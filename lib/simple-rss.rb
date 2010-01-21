@@ -109,9 +109,9 @@ class SimpleRSS
   				end
   				item[clean_tag("#{tag}+#{rel}")] = clean_content(tag, attrs, content) if attrs || content
 		    else
-  				if match[3] =~ %r{<(rss:|atom:)?#{tag}(.*?)>(.*?)</(rss:|atom:)?#{tag}>}mi
+  				if match[3] =~ %r{<(rss:|atom:)?#{tag}([^<>]*?)>(.*?)</(rss:|atom:)?#{tag}>}mi
   					nil
-  				elsif match[3] =~ %r{<(rss:|atom:)?#{tag}(.*?)/\s*>}mi
+  				elsif match[3] =~ %r{<(rss:|atom:)?#{tag}([^<>]*?)/\s*>}mi
   					nil
   				end
   				item[clean_tag(tag)] = clean_content(tag, $2, $3) if $2 || $3
